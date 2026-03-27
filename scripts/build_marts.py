@@ -3,7 +3,7 @@ from pyspark.sql import functions as F
 
 spark = SparkSession.builder \
     .appName("BuildMarts") \
-    .config("spark.driver.memory", "2g") \
+    .config("spark.driver.memory", "4g") \
     .config("spark.jars.packages", "org.postgresql:postgresql:42.5.0") \
     .getOrCreate()
 
