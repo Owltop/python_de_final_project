@@ -13,6 +13,7 @@ with DAG(
         dag_id="build_marts",
         default_args=default_args,
         description="Расчёт витрин заказов и товаров через PySpark",
+        schedule_interval=None,
 ) as dag:
     wait_for_load = ExternalTaskSensor(
         task_id="wait_for_normalized_data",

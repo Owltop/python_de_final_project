@@ -14,6 +14,7 @@ with DAG(
         dag_id="load_normalized_data",
         default_args=default_args,
         description="Загрузка данных из parquet в PostgreSQL",
+        schedule_interval=None,
 ) as dag:
 
     load_data = BashOperator(
