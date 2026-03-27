@@ -10,6 +10,8 @@ spark = SparkSession.builder \
 
 df = spark.read.parquet("/opt/airflow/data")
 
+users = df.select("user_id", "user_phone").distinct().dropna(subset=["user_id"])
+drivers = df.select("driver_id", "driver_phone").distinct().dropna(subset=["driver_id"])
 stores = df.select("store_id", "store_address").distinct().dropna(subset=["store_id"])
 items = df.select("item_id", "item_title", "item_category").distinct().dropna(subset=["item_id"])
 orders = df.select("order_id", "user_id", "store_id", "driver_id", "created_at", "address_text", "paid_at", "delivery_started_at", "delivered_at", "canceled_at", "payment_type", "order_discount", "order_cancellation_reason", "delivery_cost").distinct().dropna(subset=["order_id"])
@@ -22,6 +24,8 @@ jdbc_props = {
     "driver": "org.postgresql.Driver"
 }
 
+users.write.jdbc(jdbc_url, "users", mode="overwrite", properties=jdbc_props)
+drivers.write.jdbc(jdbc_url, "drivers", mode="overwrite", properties=jdbc_props)
 stores.write.jdbc(jdbc_url, "store", mode="overwrite", properties=jdbc_props)
 items.write.jdbc(jdbc_url, "item", mode="overwrite", properties=jdbc_props)
 orders.write.jdbc(jdbc_url, "orders", mode="overwrite", properties=jdbc_props)
