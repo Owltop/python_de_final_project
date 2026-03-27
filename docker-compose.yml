@@ -10,10 +10,10 @@ x-airflow-common: &airflow-common
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__WEBSERVER__SECRET_KEY: 'supersecretkey123'
-    JAVA_HOME: /usr/lib/jvm/java-17-openjdk-arm64
+    JAVA_HOME: /usr/lib/jvm/java-17-openjdk
     SPARK_HOME: /opt/spark
     PYSPARK_PYTHON: python3
-    PATH: /opt/spark/bin:/usr/lib/jvm/java-17-openjdk-arm64/bin:/home/airflow/.local/bin:/usr/local/bin:/usr/bin:/bin
+    PATH: /opt/spark/bin:/usr/lib/jvm/java-17-openjdk/bin:/home/airflow/.local/bin:/usr/local/bin:/usr/bin:/bin
   volumes:
     - ./dags:/opt/airflow/dags
     - ./scripts:/opt/airflow/scripts
